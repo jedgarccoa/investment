@@ -1,0 +1,6 @@
+{
+  "analysis_time": "09:00",
+  "profit_threshold": 0.05,
+  "tickers": ["AAPL", "MSFT", "NVDA"],
+  "email": "jedgar.coa.@gmail.com"
+}
