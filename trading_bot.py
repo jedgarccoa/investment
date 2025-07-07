@@ -2,6 +2,8 @@ import json
 import os
 import time
 from datetime import datetime
+import urllib.request
+from dotenv import load_dotenv
 
 import schedule
 import pandas as pd
@@ -15,6 +17,10 @@ from email.mime.text import MIMEText
 
 CONFIG_FILE = "config.json"
 TICKERS_FILE = "all_tickers.json"
+SP500_URL = "https://gist.githubusercontent.com/princefishthrower/30ab8a532b4b281ce5bfe386e1df7a29/raw"
+
+# Load variables from a .env file if present
+load_dotenv()
 
 
 def load_config(path: str = CONFIG_FILE) -> dict:
@@ -22,12 +28,20 @@ def load_config(path: str = CONFIG_FILE) -> dict:
         return json.load(f)
 
 
-def load_tickers(config: dict, path: str = TICKERS_FILE):
+def load_tickers(config: dict, path: str = TICKERS_FILE, url: str = SP500_URL):
     if config.get("tickers"):
         return config["tickers"]
-    with open(path, "r") as f:
-        data = json.load(f)
-    return [item[2] for item in data.get("data", [])]
+    try:
+        with urllib.request.urlopen(url) as f:
+            data = json.load(f)
+        return [c["symbol"] for c in data.get("companies", [])]
+    except Exception as e:
+        print(f"Failed to fetch S&P 500 list: {e}")
+        if os.path.exists(path):
+            with open(path, "r") as f:
+                data = json.load(f)
+            return [item[2] for item in data.get("data", [])]
+    return []
 
 
 def fetch_features(ticker: str):

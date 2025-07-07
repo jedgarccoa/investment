@@ -2,3 +2,4 @@ yfinance
 ta
 schedule
 scikit-learn
+python-dotenv
