@@ -23,8 +23,20 @@ Create a `config.json` file (already included as example) with:
 If `tickers` is omitted or left empty, the script will download the full list
 of S&P 500 symbols from the aforementioned gist before running the analysis.
 
+
+Copy `.env.example` to `.env` and fill in `EMAIL_USER` and `EMAIL_PASS` with the
+account credentials used to send notifications:
+
+```
+EMAIL_USER=you@gmail.com
+EMAIL_PASS=yourpassword
+```
+
+These variables will be loaded automatically when running the bot.
+=======
 Set the environment variables `EMAIL_USER` and `EMAIL_PASS` with your Gmail
 credentials for sending notifications.
+
 
 ## Running
 

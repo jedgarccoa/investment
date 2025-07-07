@@ -4,6 +4,10 @@ import time
 from datetime import datetime
 import urllib.request
 
+from dotenv import load_dotenv
+
+
+
 import schedule
 import pandas as pd
 import numpy as np
@@ -17,6 +21,11 @@ from email.mime.text import MIMEText
 CONFIG_FILE = "config.json"
 TICKERS_FILE = "all_tickers.json"
 SP500_URL = "https://gist.githubusercontent.com/princefishthrower/30ab8a532b4b281ce5bfe386e1df7a29/raw"
+
+
+# Load variables from a .env file if present
+load_dotenv()
+
 
 
 def load_config(path: str = CONFIG_FILE) -> dict:
