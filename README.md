@@ -33,9 +33,7 @@ EMAIL_PASS=yourpassword
 ```
 
 These variables will be loaded automatically when running the bot.
-=======
-Set the environment variables `EMAIL_USER` and `EMAIL_PASS` with your Gmail
-credentials for sending notifications.
+
 
 
 ## Running
